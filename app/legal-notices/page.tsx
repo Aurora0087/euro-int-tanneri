@@ -1,8 +1,31 @@
+import type { Metadata } from "next"
 import { FadeIn } from "@/components/animated-section"
+import { BreadcrumbJsonLd } from "@/components/json-ld"
+import { siteConfig } from "@/lib/seo"
+
+export const metadata: Metadata = {
+  title: "Legal Notices",
+  description:
+    "Legal notices for the Euro International website — company information, intellectual property rights, trademarks, liability limitations and governing law.",
+  keywords: ["Euro International legal notices", "leather manufacturer legal", "Euro International terms"],
+  alternates: { canonical: "/legal-notices" },
+  robots: { index: false, follow: true },
+  openGraph: {
+    title: "Legal Notices | Euro International",
+    description: "Legal notices including IP rights, trademarks, liability limitations and governing law.",
+    url: `${siteConfig.url}/legal-notices`,
+  },
+}
 
 export default function LegalNoticesPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Legal Notices", url: "/legal-notices" },
+        ]}
+      />
       <section className="py-28 bg-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>

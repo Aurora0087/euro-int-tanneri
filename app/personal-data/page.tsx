@@ -1,8 +1,31 @@
+import type { Metadata } from "next"
 import { FadeIn } from "@/components/animated-section"
+import { BreadcrumbJsonLd } from "@/components/json-ld"
+import { siteConfig } from "@/lib/seo"
+
+export const metadata: Metadata = {
+  title: "Personal Data Protection",
+  description:
+    "Euro International's personal data protection policy — how we collect, process, store and protect your personal information, your rights, and how to contact our data protection contact.",
+  keywords: ["Euro International privacy policy", "leather manufacturer GDPR", "personal data protection India"],
+  alternates: { canonical: "/personal-data" },
+  robots: { index: false, follow: true },
+  openGraph: {
+    title: "Personal Data Protection | Euro International",
+    description: "Privacy policy — data collection, processing, retention, your rights and how to contact us.",
+    url: `${siteConfig.url}/personal-data`,
+  },
+}
 
 export default function PersonalDataPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Personal Data Protection", url: "/personal-data" },
+        ]}
+      />
       <section className="py-28 bg-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
