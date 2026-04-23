@@ -1,31 +1,33 @@
-import { Geist, Geist_Mono, Noto_Sans, Inter } from "next/font/google"
-
+import { Playfair_Display, Noto_Sans, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
+import { cn } from "@/lib/utils"
 
-const interHeading = Inter({subsets:['latin'],variable:'--font-heading'});
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" })
+const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'})
+export const metadata = {
+  title: "Euro International | Fine Leather Goods",
+  description:
+    "Premium leather manufacturer based in Kolkata, India — combining European quality standards with sustainable, responsible tanning practices.",
+}
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", notoSans.variable, interHeading.variable)}
+      className={cn("antialiased", playfair.variable, notoSans.variable, geistMono.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Navbar />
+          <main className="pt-20">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
